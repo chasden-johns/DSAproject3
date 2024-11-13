@@ -6,12 +6,86 @@
 #include<string>
 #include<algorithm>
 #include<chrono>
+#include <fstream>
+#include <sstream>
 #include "medTree.hpp"
 using namespace std;
 
 
+vector<vector<string>> parseInput(const string& filename) {
+    vector<vector<string>> data;
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "Error: Could not open file." << endl;
+        return data;
+    }
+    cout << "File loaded." << endl;
+    string line;
+    getline(file, line);
+    int rowCount = 0;
+    while (getline(file, line) && rowCount < 10) {
+        stringstream s(line);
+        string word;
+        vector<string> row;
+        rowCount++;
+        while (getline(s, word, ',')) {
+            // read in each word in column into its own row vector
+            row.push_back(word);
+        }
+        data.push_back(row); // read in each row back into the data
+    }
+    file.close();
+    return data;
+}
+
+void printCheck(const vector<vector<string>>& data) {
+    for (size_t i = 0; i < data.size(); ++i) {
+        cout << "Row " << i + 1 << ": ";
+        for (const auto& cell : data[i]) {
+            cout << cell << " ";
+        }
+        cout << endl;
+    }
+}
+
+void getMedicine(const vector<vector<string>>& data, int rowIndex) {
+    // get medicine based on drugName as parameter
+    if (rowIndex >= data.size()) {
+        cout << "Index Out of Bounds";
+        return;
+    }
+    auto& row = data[rowIndex]; // access row in readCSV
+    string drugName = row[0]; // work to iterate through string name and read up to a space
+    // store in string
+    vector<string> substitutes;
+    vector<string> sideEffects;
+    // start from col 1 to get substitutes (cols 1 - 5)
+    for (int col = 1; col < row.size(); col++) {
+        if (col >= 1 && col <= 6) {
+            substitutes.push_back(row[col]);
+        }
+        else if (col > 6) {
+            sideEffects.push_back(row[col]);
+        }
+    }
+    cout << "MedName" << drugName << endl;
+    cout << "Substitutes" << endl;
+    for (int i = 0; i < substitutes.size(); i++) {
+        cout << substitutes[i] << endl;
+    }
+    cout << "SideEffects" << endl;
+    for (int i = 0; i < sideEffects.size(); i++) {
+        cout << sideEffects[i] << endl;
+    }
+}
+
 int main()
 {
+    string filename = "medicine_dataset.csv";
+    int rowIndex = 2; //Example index
+    vector<vector<string>> data = parseInput(filename);
+    getMedicine(data, rowIndex); // maybe we can change this to take in the name instead
+
     medTree tester;
 
     vector<string> sideEffects1 = {"back pain", "headaches", "nausea"};
