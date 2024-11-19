@@ -4,10 +4,8 @@
 #include<stack>
 #include<queue>
 #include<string>
+#include<fstream>
 #include<algorithm>
-#include <sstream>
-#include <fstream>
-
 #include "medTree.hpp"
 using namespace std;
 
@@ -215,22 +213,26 @@ bool medTree::searchMedHelperDFS(treeNode* root, string medicine)
         stk.pop();
         if (temp->med == medicine)
         {
-            cout << "medicine found using DFS" << endl;
+            cout << "| Medicine found using DFS                         |" << endl;
             medFound = true;
             currMed = medicine;
             effects = temp->sideEffects;
             subs = temp->subs;
-            cout << currMed << endl;
-            for (auto item : temp->sideEffects)
-            {
-                cout << item << " ";
+            cout << "| Medicine Name: " << currMed << endl;
+            cout << "| Side Effects:  ";
+            for (size_t i = 0; i < temp->sideEffects.size(); i++){
+                if (i == 0)
+                    cout << temp->sideEffects[i] << endl;
+                else
+                    cout << "|                " << temp->sideEffects[i] << endl;
             }
-            cout << endl;
-            for (auto item : temp->subs)
-            {
-                cout << item << " ";
+            cout << "| Substitutes:   ";
+            for (size_t i = 0; i < temp->subs.size(); i++){
+                if (i == 0)
+                    cout << temp->subs[i] << endl;
+                else
+                    cout << "|                " << temp->subs[i] << endl;
             }
-            cout << endl;
             return true;
         }
         // if not already visited
@@ -274,22 +276,26 @@ bool medTree::searchMedHelperBFS(treeNode* root, string medicine)
         q.pop();
         if (temp->med == medicine)
         {
-            cout << "medicine found using BFS" << endl;
+            cout << "| Medicine found using BFS                         |" << endl;
             medFound = true;
             currMed = medicine;
             effects = temp->sideEffects;
             subs = temp->subs;
-            cout << currMed << endl;
-            for (auto item : temp->sideEffects)
-            {
-                cout << item << " ";
+            cout << "| Medicine Name: " << currMed << endl;
+            cout << "| Side Effects:  ";
+            for (size_t i = 0; i < temp->sideEffects.size(); i++){
+                if (i == 0)
+                    cout << temp->sideEffects[i] << endl;
+                else
+                    cout << "|                " << temp->sideEffects[i] << endl;
             }
-            cout << endl;
-            for (auto item : temp->subs)
-            {
-                cout << item << " ";
+            cout << "| Substitutes:   ";
+            for (size_t i = 0; i < temp->subs.size(); i++){
+                if (i == 0)
+                    cout << temp->subs[i] << endl;
+                else
+                    cout << "|                " << temp->subs[i] << endl;
             }
-            cout << endl;
             return true;
         }
         if (temp->left != nullptr)
