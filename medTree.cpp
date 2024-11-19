@@ -260,7 +260,7 @@ void medTree::searchMedDFS(string medicine)
     if (searchMedHelperDFS(root, medicine))
         return;
     else
-        cout << "DFS search failed" << endl;
+        cout << "Medicine Not Found." << endl;
 }
 // breadth-first travsersal
 bool medTree::searchMedHelperBFS(treeNode* root, string medicine)
@@ -322,5 +322,5 @@ void medTree::searchMedBFS(string medicine)
     if (searchMedHelperBFS(root, medicine))
         return;
     else
-        cout << "BFS search failed" << endl;
+        cout << "Medicine Not Found." << endl;
 }
