@@ -84,8 +84,8 @@ void parseInput(const string& filePath, medTree& tree) {
 
         tree.insertMed(medicine, sideEffects, subs);
 
-        // Ppint progress for every 10,000 rows processed
-        if (lineCount % 10000 == 0) {
+        // Ppint progress for every 100,000 rows processed
+        if (lineCount % 100000 == 0) {
             cout << "Processed " << lineCount << " rows..." << endl;
         }
     }

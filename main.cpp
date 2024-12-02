@@ -19,7 +19,7 @@ int main() {
     parseInput(csvFilePath, tree);
 
     string drugName;
-    cout << "[[ PHARMACY AID                                   ]] " << endl;
+    cout << "[[                 PHARMACY AID                   ]] " << endl;
     cout << "| Welcome User!                                    |" << endl;
     cout << "| PHARMACY AID is your key to any question you may |" <<
     endl << "| have on drug specifics!                          |" << endl;
@@ -27,9 +27,10 @@ int main() {
     endl << "| below to get a list of all possible side effect  |" <<
     endl << "| and substitutes.                                 |" << endl;
 
-    cout << "[[    Enter Drug Name    ]] :";
+    cout << "[[                Enter Drug Name                 ]] : ";
     getline(cin, drugName);
-    cout << " . . searching for " << drugName << " . . . " << endl;
+    cout << endl;
+    cout << "          . . . searching for " << drugName << " . . . " << endl;
 
     // BFS Algorithm
     auto startBFS = chrono::high_resolution_clock::now();
@@ -49,16 +50,17 @@ int main() {
     bool endSession = false;
     while (!endSession){
         string answer;
-        cout << "| Are you satisfied with your care?                |" << endl;
-        cout << "[[  Enter Y to exit or N to search  ]]" << endl <<
-                "[[        for another medicine      ]] : ";
+        cout << endl;
+        cout << "|         Are you satisfied with your care?        |" << endl;
+        cout << "[[        Enter Y to exit or N to search          ]]" << endl <<
+                "[[            for another medicine                ]] : ";
         getline(cin, answer);
         if (answer == "N" || answer == "n") {
             string newDrugName;
-            cout << "|                                                 |" << endl;
-            cout << "[[    Enter Drug Name    ]] :";
+            cout << "|                                                  |" << endl;
+            cout << "[[                Enter Drug Name                 ]] : ";
             getline(cin, newDrugName);
-            cout << " . . searching for " << drugName << " . . . " << endl;
+            cout << "         . . . searching for " << newDrugName << " . . . " << endl;
 
             auto startBFS = chrono::high_resolution_clock::now();
             tree.searchMedBFS(newDrugName);
@@ -74,11 +76,11 @@ int main() {
         }
         else if (answer == "Y" || answer == "y"){
             endSession = true;
-            cout << "| Thank you for using PHARMACY AID!               |" << endl;
-            cout << "|_________________________________________________|" << endl;
+            cout << "|        Thank you for using PHARMACY AID!         |" << endl;
+            cout << "|__________________________________________________|" << endl;
         }
         else {
-            cout << "| Error. Invalid Input                            |" << endl;
+            cout << "|               Error. Invalid Input              |" << endl;
             cin.clear();
         }
     }
